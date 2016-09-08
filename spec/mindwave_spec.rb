@@ -1,66 +1,44 @@
 require 'spec_helper'
 
 describe Mindwave do
-  let(:mw) {Mindwave::Dongle.new}
+  let(:mw) {Mindwave::Headset.new}
 
   it 'has a version number' do
     expect(Mindwave::VERSION).not_to be nil
   end
 
-#  it 'opens a serial connection' do
-#	mw.serial_open
-#  end
-#
-#  it 'connects' do
-#  	sleep(2)
-#  	mw.connect()
-#  end
-#
-#  it 'reads packets..' do
-#  	sleep(5)
-#	mw.reader
-#  end
-#
-#  it 'disconnects..' do
-#  	mw.disconnect
-#  end
-#
-#  it 'closes the serial connection' do
-#  	mw.serial_close
-#  end
+it 'connects and disconnects' do
+     mw.serial_open
+     sleep(2)
+     mw.connect
+     sleep(5)
+     mw.disconnect
+     mw.serial_close
 
-#  it 'connects and disconnects' do
-#	mw.serial_open
-#	sleep(2)
-#	mw.connect
-#	sleep(5)
-#	mw.disconnect
-#	mw.serial_close
-#
-#  end
+end
 
-#  it 'test all' do
-#  	puts "Serial open.."
-#	mw.log = Logger.new("mindwave.log")
-#  	mw.serial_open
-#	sleep(2)
-#  	puts "Connect.."
-#	mw.connect
-#	sleep(5)
-#	puts "Send Byte Attention"
-#	mw.sendbyte(0x01)
-#	sleep(2)
-#	puts "Reader..."
-#	require 'timeout'
-#	status = Timeout::timeout(15) {
-#	mw.reader
-#	}
-#	puts "Disconnect"
-#	mw.disconnect
-#	puts "Serial close.."
-#	mw.serial_close
-#
-#  end
+it 'test all' do
+	puts "Serial open.."
+     mw.log = Logger.new("mindwave.log")
+	mw.serial_open
+     sleep(2)
+	puts "Connect.."
+     mw.connect
+     sleep(5)
+     puts "Send Byte Attention"
+     mw.sendbyte(0x01)
+     sleep(2)
+     puts "Reader..."
+     require 'timeout'
+     status = Timeout::timeout(15) {
+     mw.run
+     }
+     puts "Disconnect"
+     mw.disconnect
+     puts "Serial close.."
+     mw.serial_close
+
+end
 
   it 'parses the payload' do
 # D, [2016-09-07T20:53:01.403348 #20974] DEBUG -- : <<< START RECORD >>>

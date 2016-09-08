@@ -3,10 +3,10 @@
 require "bundler/setup"
 require 'mindwave'
 
-mw = Mindwave::Dongle.new
+mw = Mindwave::Headset.new
 puts "Serial open.."
 mw.log = Logger.new("mindwave.log")
-mw.log.level = Logger::INFO
+mw.log.level = Logger::DEBUG
 mw.serial_open
 sleep(2)
 puts "Connect.."
@@ -18,7 +18,7 @@ sleep(2)
 puts "Reader..."
 # require 'timeout'
 # status = Timeout::timeout(30) {
-mw.reader
+mw.run
 # }
 puts "Disconnect"
 mw.disconnect
