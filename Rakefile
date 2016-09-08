@@ -7,7 +7,7 @@ task :default => :spec
 
 require "rdoc/task"
 RDoc::Task.new :documentation do |rd|
- rd.rdoc_files.include("lib/**/*.rb")
+ rd.rdoc_files.include("lib/**/*.rb","LICENSE.txt")
  rd.rdoc_dir = "doc"
  rd.options << "--all"
 end
