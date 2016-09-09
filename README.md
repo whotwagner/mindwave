@@ -6,19 +6,7 @@ Even if this library is written for the Mindwave-Headset most of the code should
 
 ## Installation
 
-Add this line to your application's Gemfile:
-
-```ruby
-gem 'mindwave'
-```
-
-And then execute:
-
-    $ bundle
-
-Or install it yourself as:
-
-    $ gem install mindwave
+TODO: Upload this Gem to rubygems
 
 ## Usage
 
