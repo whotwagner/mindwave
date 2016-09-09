@@ -31,6 +31,8 @@ thread = Thread.new { mw.run }
 # ..and run it
 thread.join
 
+mw.close
+
 ```
 
 The callback-methods can be overwritten with own code:
@@ -62,6 +64,8 @@ end
 thread = Thread.new { mw.run }
 # ..and run it
 thread.join
+
+mw.close
 ```
 
 ## Resources
