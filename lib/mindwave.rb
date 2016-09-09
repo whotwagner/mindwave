@@ -210,7 +210,7 @@ end
 # this method parses the payload of a data-row, parses the values and invokes the callback methods
 # * *Args* : (array) payload
 def parse_payload(payload)
-	if not payload.instance_of?Array or payload.nil?
+	if not payload.instance_of?Array or payload.nil? or payload.length < 2
 		raise "Invalid Argument"
 	end
 
@@ -243,7 +243,7 @@ def parse_payload(payload)
 	# some debugging output
 	log.info(sprintf("extcodelevel: %x",extcodelevel))
 	log.info(sprintf("Code: %x",code))
-	log.info(sprintf("Length: %d",pl.length))
+	log.debug(sprintf("Length: %d",pl.length))
 	pl.each do |n|
 		log.debug(sprintf("payload: Hex: %x Dec: %d",n,n))
 	end
@@ -297,7 +297,7 @@ def parse_payload(payload)
 			codestr = "Unknown"
 		end
 
-		log.info(sprintf("SINGLEBYTE-PAYLOAD: Code: %s Hex: %x - Dec: %d",codestr,sbpayload,sbpayload))
+		log.debug(sprintf("SINGLEBYTE-PAYLOAD: Code: %s Hex: %x - Dec: %d",codestr,sbpayload,sbpayload))
 
 		# Re-Parse the rest of the payload 
 		if pl.length > 1
@@ -332,7 +332,7 @@ def parse_payload(payload)
 		log.info(sprintf("Multibyte-Payload-Length: %d",pl[0]))
 		
 		mpl.each() do |n|
-			log.info(sprintf("MULTIBYTE-PAYLOAD: Hex: %x - Dec: %d",n,n))
+			log.debug(sprintf("MULTIBYTE-PAYLOAD: Hex: %x - Dec: %d",n,n))
 		end
 
 		# Re-Parse the rest of the payload 
