@@ -103,23 +103,30 @@ EEG_POWER = 0x81
 ASIC_EEG_POWER = 0x83
 RRINTERVAL = 0x86
 
-attr_accessor :headsetid, :device, :rate, :log
-attr_reader :attention, :meditation, :poor, :headsetstatus, :heart
+attr_accessor :headsetid, :device, :rate, :log, :mobile
+attr_reader :attention, :meditation, :poor, :headsetstatus, :heart, :runner
 
 ##
-# Standard constructor
+# If connectserial is true, then this constructor opens a serial connection 
+# and automatically connects to the headset
 # * *Args* :
 #   - headsetid (sticker in the battery-case)
 #   - device  (tty-device)
 #   - rate
 #   - log (logger-instance)
-def initialize(headsetid=nil,device='/dev/ttyUSB0', rate=115200, log=Logger.new(STDOUT))
+def initialize(headsetid=nil,device='/dev/ttyUSB0', connectserial=true,rate=115200, log=Logger.new(STDOUT))
         @headsetid=headsetid
         @device=device
         @rate=rate
 	@log=log
 	@log.level = Logger::FATAL
 	@headsetstatus = 0
+	@runner = true
+
+	if connectserial
+		serial_open
+		connect(@headsetid)
+	end
 end
 
 # connects the Mindwave-headset(not needed with Mindwave-Mobile)
@@ -147,8 +154,9 @@ end
 def run
         byte = 0
         tmpbyte = 0;
+	@runner = true
 
-        while true
+        while @runner
 		log.debug("<<< START RECORD >>>")
                 tmpbyte = logreadbyte
 
@@ -300,7 +308,7 @@ def parse_payload(payload)
 		log.debug(sprintf("SINGLEBYTE-PAYLOAD: Code: %s Hex: %x - Dec: %d",codestr,sbpayload,sbpayload))
 
 		# Re-Parse the rest of the payload 
-		if pl.length > 1
+		if pl.length > 2
 			payload = pl[1,pl.length-1]
 			# recursive call of parse_payload for the next data-rows
 			parse_payload(payload)
@@ -370,12 +378,23 @@ end
 
 # this method opens a serial connection to the device
 def serial_open
-        @conn = SerialPort.new(device,rate)
+        @conn = SerialPort.new(@device,@rate)
 end
 
 # this method closes a serial connection to the device
 def serial_close
         @conn.close
+end
+
+# this method disconnects the headset and closes the serial line
+def close
+	disconnect
+	serial_close
+end
+
+# this method stops the run-method
+def stop
+	@runner = false
 end
 
 # --------------------------
