@@ -1,6 +1,6 @@
 # Mindwave
 
-This gem is a library for the Neurosky Mindwave headset. It reads out EEG-data from the ThinkGear Serial Stream and offers callback-Methods for processing the data.
+This gem is a library for the Neurosky Mindwave headset. It reads out EEG-data from the ThinkGear Serial Stream and provides callback-methods for processing the data.
 
 Even if this library is written for the Mindwave-Headset most of the code should work with the Mindwave-Mobile-Headset too. The big difference is that the methods "connect and disconnect" are not needed for Mindwave Mobile Headsets. 
 
@@ -9,6 +9,32 @@ Even if this library is written for the Mindwave-Headset most of the code should
 TODO: Upload this Gem to rubygems
 
 ## Usage
+
+In the following example the default callback-methods are invoked:
+
+```ruby
+#!/usr/bin/env ruby
+
+require 'mindwave'
+
+# create a new instance
+mw = Mindwave::Headset.new
+mw.log.level = Logger::INFO
+
+# if we hit ctrl+c then just stop the run()-method
+Signal.trap("INT") do
+	mw.stop
+end
+
+# Create a new Thread
+thread = Thread.new { mw.run }
+# ..and run it
+thread.join
+
+```
+
+The callback-methods can be overwritten with own code:
+
 
 ```ruby
 #!/usr/bin/env ruby
