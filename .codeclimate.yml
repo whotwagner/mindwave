@@ -14,6 +14,8 @@ engines:
     - 58a256f39330c810f5038543c50d7d7c
   rubocop:
     enabled: true
+    exclude_fingerprints:
+    - 56db737cbea1d5ee691dfab3c4a9cfac
 ratings:
   paths:
   - "**.inc"
