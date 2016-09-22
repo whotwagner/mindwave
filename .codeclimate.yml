@@ -16,6 +16,9 @@ engines:
     enabled: true
     exclude_fingerprints:
     - 56db737cbea1d5ee691dfab3c4a9cfac
+    - b8f2dbfc9c9d49faea756aa6eb4e7f82
+    - 56db737cbea1d5ee691dfab3c4a9cfac
+    - 93d1209c2b426bd26156f7abb8ea1296
 ratings:
   paths:
   - "**.inc"

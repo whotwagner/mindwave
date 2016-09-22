@@ -152,7 +152,7 @@ end
 # and reads out all data from the headset using
 # the open serial-line.
 def run
-        byte = 0
+
         tmpbyte = 0;
 	@runner = true
 
@@ -230,7 +230,6 @@ def parse_payload(payload)
 	code = payload[0]
 	pl = payload[1,payload.length-1]
 	
-	# TODO: implement Extended-Code-Level-Support
 	if code == Mindwave::Headset::EXCODE
 		extcodelevel += 1
 		
