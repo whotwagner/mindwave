@@ -405,7 +405,8 @@ end
 # this method is called when the poor-value is parsed
 # override this method to implement your own clode
 #
-# * *Args* : poor-value
+# * *Args* : 
+#   - +poor+ poor-value
 def poorCall(poor)
 	if poor == 200 
 		log.info("No skin-contact detected")
@@ -415,7 +416,8 @@ end
 # this method is called when the attention-value is parsed
 # override this method to implement your own code
 #
-# * *Args* : attention-value
+# * *Args* : 
+#   - +attention+ attention-value
 def attentionCall(attention)
 	str = eSenseStr(attention)
 	log.info("ATTENTION #{attention} #{str}")
@@ -424,7 +426,8 @@ end
 # this method is called when the meditation-value is parsed
 # override this method to implement your own code
 #
-# * *Args* : attention-value
+# * *Args* : 
+#   - +meditation+ meditation-value
 def meditationCall(meditation)
 	str = eSenseStr(meditation)
 	log.info("MEDITATION #{meditation} #{str}")
@@ -433,7 +436,8 @@ end
 # this method is called when the heart-rate-value is parsed
 # override this method to implement your own code
 #
-# * *Args* : attention-value
+# * *Args* : 
+#   - +heart+ heart-value
 def heartCall(heart)
 	log.info("HEART RATE #{heart}")
 end
@@ -441,7 +445,8 @@ end
 # this method is called when the raw-wave-value is parsed
 # override this method to implement your own code
 #
-# * *Args* : attention-value
+# * *Args* : 
+#   - +rawvalue+ raw-wave-value
 def rawCall(rawvalue)
 	log.debug("Converted Raw-Value: #{rawvalue}")
 end
@@ -449,7 +454,8 @@ end
 # this method is called when the asic-value is parsed
 # override this method to implement your own code
 #
-# * *Args* : asic-value
+# * *Args* : 
+#   - +asic+ asic-value
 def asicCall(asic)
 	log.debug("ASIC Value: #{asic}")
 end
