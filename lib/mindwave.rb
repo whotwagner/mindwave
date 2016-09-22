@@ -422,7 +422,7 @@ end
 # override this method to implement your own clode
 # * *Args* : attention-value
 def meditationCall(meditation)
-	str = eSenseStr(attention)
+	str = eSenseStr(meditation)
 	log.info("MEDITATION #{meditation} #{str}")
 end
 
