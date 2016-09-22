@@ -1,5 +1,8 @@
 # Mindwave
 
+[![GPL Licence](https://badges.frapsoft.com/os/gpl/gpl.png?v=103)](https://github.com/whotwagner/mindwave/blob/master/LICENSE.txt)  
+
+
 This gem is a library for the Neurosky Mindwave headset. It reads out EEG-data from the ThinkGear Serial Stream and provides callback-methods for processing the data.
 
 Even if this library is written for the Mindwave-Headset most of the code should work with the Mindwave-Mobile-Headset too. The big difference is that the methods "connect and disconnect" are not needed for Mindwave Mobile Headsets. 
