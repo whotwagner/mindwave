@@ -76,8 +76,9 @@ EXCODE = 0x55
 
 # 0-255(zero is good). 200 means no-skin-contact
 POOR_SIGNAL = 0x02 
+# Heartrate
 HEART_RATE = 0x03
-# Attention
+# Attention @see
 ATTENTION = 0x04
 # Meditation
 MEDITATION = 0x05
@@ -92,8 +93,11 @@ RAW_MARKER = 0x07
 
 # Raw Wave output
 RAW_WAVE = 0x80
+# EEG-Power
 EEG_POWER = 0x81
+# ASIC-EEG-POWER-INT
 ASIC_EEG_POWER = 0x83
+# RRinterval
 RRINTERVAL = 0x86
 
 attr_accessor :headsetid, :device, :rate, :log, :mobile
