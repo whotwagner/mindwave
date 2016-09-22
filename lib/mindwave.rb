@@ -104,7 +104,7 @@ ASIC_EEG_POWER = 0x83
 RRINTERVAL = 0x86
 
 attr_accessor :headsetid, :device, :rate, :log, :mobile
-attr_reader :attention, :meditation, :poor, :headsetstatus, :heart, :runner
+attr_reader :attention, :meditation, :asic,:poor, :headsetstatus, :heart, :runner
 
 ##
 # If connectserial is true, then this constructor opens a serial connection 
@@ -329,6 +329,8 @@ def parse_payload(payload)
 			codestr = "EEG Power"
 		when Mindwave::Headset::ASIC_EEG_POWER
 			codestr = "ASIC EEG POWER"
+			@asic = mpl
+			asicCall(@asic)
 		when Mindwave::Headset::RRINTERVAL
 			codestr = "RRINTERVAL"
 		else
@@ -411,7 +413,7 @@ def poorCall(poor)
 end
 
 # this method is called when the attention-value is parsed
-# override this method to implement your own clode
+# override this method to implement your own code
 # * *Args* : attention-value
 def attentionCall(attention)
 	str = eSenseStr(attention)
@@ -419,7 +421,7 @@ def attentionCall(attention)
 end
 
 # this method is called when the meditation-value is parsed
-# override this method to implement your own clode
+# override this method to implement your own code
 # * *Args* : attention-value
 def meditationCall(meditation)
 	str = eSenseStr(meditation)
@@ -427,17 +429,24 @@ def meditationCall(meditation)
 end
 
 # this method is called when the heart-rate-value is parsed
-# override this method to implement your own clode
+# override this method to implement your own code
 # * *Args* : attention-value
 def heartCall(heart)
 	log.info("HEART RATE #{heart}")
 end
 
 # this method is called when the raw-wave-value is parsed
-# override this method to implement your own clode
+# override this method to implement your own code
 # * *Args* : attention-value
 def rawCall(rawvalue)
 	log.debug("Converted Raw-Value: #{rawvalue}")
+end
+
+# this method is called when the asic-value is parsed
+# override this method to implement your own code
+# * *Args* : asic-value
+def asicCall(asic)
+	log.debug("ASIC Value: #{asic}")
 end
 
 private
