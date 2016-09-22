@@ -492,7 +492,12 @@ end
 #
 # * *Returns* : (numeric) single value generated from the 2 bytes
 def convertRaw(rawval1,rawval2)
-	return (rawval1 << 8) | rawval2
+	raw = rawval1*256 + rawval2
+        if raw >= 32768
+                raw = raw - 65536
+        end
+
+	return raw
 end
 
 end
