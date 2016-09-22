@@ -404,6 +404,7 @@ end
 
 # this method is called when the poor-value is parsed
 # override this method to implement your own clode
+#
 # * *Args* : poor-value
 def poorCall(poor)
 	if poor == 200 
@@ -413,6 +414,7 @@ end
 
 # this method is called when the attention-value is parsed
 # override this method to implement your own code
+#
 # * *Args* : attention-value
 def attentionCall(attention)
 	str = eSenseStr(attention)
@@ -421,6 +423,7 @@ end
 
 # this method is called when the meditation-value is parsed
 # override this method to implement your own code
+#
 # * *Args* : attention-value
 def meditationCall(meditation)
 	str = eSenseStr(meditation)
@@ -429,6 +432,7 @@ end
 
 # this method is called when the heart-rate-value is parsed
 # override this method to implement your own code
+#
 # * *Args* : attention-value
 def heartCall(heart)
 	log.info("HEART RATE #{heart}")
@@ -436,6 +440,7 @@ end
 
 # this method is called when the raw-wave-value is parsed
 # override this method to implement your own code
+#
 # * *Args* : attention-value
 def rawCall(rawvalue)
 	log.debug("Converted Raw-Value: #{rawvalue}")
@@ -443,6 +448,7 @@ end
 
 # this method is called when the asic-value is parsed
 # override this method to implement your own code
+#
 # * *Args* : asic-value
 def asicCall(asic)
 	log.debug("ASIC Value: #{asic}")
@@ -486,8 +492,8 @@ end
 # converts a raw-wave-data-packet of 2 bytes to a single value
 #
 # * *Args* : 
-#   - rawval1 (numeric) first byte-packet of the raw-wave-code
-#   - rawval2 (numeric) second byte-packet of the raw-wave-code
+#   - +rawval1+ (numeric) first byte-packet of the raw-wave-code
+#   - +rawval2+ (numeric) second byte-packet of the raw-wave-code
 #
 # * *Returns* : (numeric) single value generated from the 2 bytes
 def convertRaw(rawval1,rawval2)
