@@ -103,13 +103,13 @@ ASIC_EEG_POWER = 0x83
 RRINTERVAL = 0x86
 
 # @!attribute headsetid
-#   headset id
+#   @return [Integer] headset id
 # @!attribute device
-#   dongle device(like /dev/ttyUSB0)
+#   @return [String] dongle device(like /dev/ttyUSB0)
 # @!attribute rate
-#   baud-rate of the device
+#   @return [Integer] baud-rate of the device
 # @!attribute log
-#   logger instance
+#   @return [Logger] logger instance
 attr_accessor :headsetid, :device, :rate, :log
 
 # @!attribute [r] attention
