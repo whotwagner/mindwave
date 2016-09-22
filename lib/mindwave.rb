@@ -451,13 +451,13 @@ def rawCall(rawvalue)
 	log.debug("Converted Raw-Value: #{rawvalue}")
 end
 
+##
 # this method is called when the asic-value is parsed
 # override this method to implement your own code
 #
 # * *Args* : 
 #   - asic asic-value
 #
-# * *Returns* : nothing
 def asicCall(asic)
 	log.debug("ASIC Value: #{asic}")
 end
