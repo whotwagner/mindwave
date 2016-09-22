@@ -456,6 +456,8 @@ end
 #
 # * *Args* : 
 #   - asic asic-value
+#
+# * *Returns* : nothing
 def asicCall(asic)
 	log.debug("ASIC Value: #{asic}")
 end
