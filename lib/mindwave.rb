@@ -478,7 +478,7 @@ def eSenseStr(value)
 		when 81..100 then "Elevated"
 		else
 			"Unknown"
-	end
+		end
 
 	return result
 end
