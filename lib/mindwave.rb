@@ -78,9 +78,11 @@ EXCODE = 0x55
 POOR_SIGNAL = 0x02 
 # Heartrate
 HEART_RATE = 0x03
-# Attention @see
+# Attention 
+# @see #eSenseStr
 ATTENTION = 0x04
-# Meditation
+# Meditation 
+# @see #eSenseStr
 MEDITATION = 0x05
 # Not available in Mindwave and Mindwave Mobile
 BIT8_RAW = 0x06    
@@ -100,7 +102,30 @@ ASIC_EEG_POWER = 0x83
 # RRinterval
 RRINTERVAL = 0x86
 
-attr_accessor :headsetid, :device, :rate, :log, :mobile
+# @!attribute headsetid
+#   headset id
+# @!attribute device
+#   dongle device(like /dev/ttyUSB0)
+# @!attribute rate
+#   baud-rate of the device
+# @!attribute log
+#   logger instance
+attr_accessor :headsetid, :device, :rate, :log
+
+# @!attribute [r] attention
+#   stores the current attention-value
+# @!attribute [r] meditation
+#   stores the current meditation-value
+# @!attribute [r] asic
+#   stores the current asic-value
+# @!attribute [r] poor
+#   stores the current poor-value
+# @!attribute [r] headsetstatus
+#   stores the current headsetstatus-value
+# @!attribute [r] heart
+#   stores the current heart-value
+# @!attribute [r] runner
+#   if runner is set to false the method run() will stop
 attr_reader :attention, :meditation, :asic,:poor, :headsetstatus, :heart, :runner
 
 # If connectserial is true, then this constructor opens a serial connection 
