@@ -7,38 +7,38 @@ describe Mindwave do
     expect(Mindwave::VERSION).not_to be nil
   end
 
-it 'connects and disconnects' do
-     mw.serial_open
-     sleep(2)
-     mw.connect
-     sleep(5)
-     mw.disconnect
-     mw.serial_close
-
-end
-
-it 'test all' do
-	puts "Serial open.."
-     mw.log = Logger.new("mindwave.log")
-	mw.serial_open
-     sleep(2)
-	puts "Connect.."
-     mw.connect
-     sleep(5)
-     puts "Send Byte Attention"
-     mw.sendbyte(0x01)
-     sleep(2)
-     puts "Reader..."
-     require 'timeout'
-     status = Timeout::timeout(15) {
-     mw.run
-     }
-     puts "Disconnect"
-     mw.disconnect
-     puts "Serial close.."
-     mw.serial_close
-
-end
+# it 'connects and disconnects' do
+#      mw.serial_open
+#      sleep(2)
+#      mw.connect
+#      sleep(5)
+#      mw.disconnect
+#      mw.serial_close
+# 
+# end
+# 
+# it 'test all' do
+# 	puts "Serial open.."
+#      mw.log = Logger.new("mindwave.log")
+# 	mw.serial_open
+#      sleep(2)
+# 	puts "Connect.."
+#      mw.connect
+#      sleep(5)
+#      puts "Send Byte Attention"
+#      mw.sendbyte(0x01)
+#      sleep(2)
+#      puts "Reader..."
+#      require 'timeout'
+#      status = Timeout::timeout(15) {
+#      mw.run
+#      }
+#      puts "Disconnect"
+#      mw.disconnect
+#      puts "Serial close.."
+#      mw.serial_close
+# 
+# end
 
   it 'parses the payload' do
 # D, [2016-09-07T20:53:01.403348 #20974] DEBUG -- : <<< START RECORD >>>
