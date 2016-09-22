@@ -125,7 +125,7 @@ attr_accessor :headsetid, :device, :rate, :log
 # @!attribute [r] heart
 #   stores the current heart-value
 # @!attribute [r] runner
-#   if runner is set to false the method run() will stop
+#   @return [Boolean] if runner is set to false the method run() will stop
 attr_reader :attention, :meditation, :asic,:poor, :headsetstatus, :heart, :runner
 
 # If connectserial is true, then this constructor opens a serial connection 
