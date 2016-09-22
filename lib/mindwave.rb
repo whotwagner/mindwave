@@ -455,7 +455,7 @@ end
 # override this method to implement your own code
 #
 # * *Args* : 
-#   - +asic+ asic-value
+#   - asic asic-value
 def asicCall(asic)
 	log.debug("ASIC Value: #{asic}")
 end
