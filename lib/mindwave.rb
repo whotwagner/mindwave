@@ -455,8 +455,8 @@ end
 # this method is called when the asic-value is parsed
 # override this method to implement your own code
 #
-# * *Args* : 
-#   - asic asic-value
+# == Parameters: 
+#   - asic:: asic-value
 #
 def asicCall(asic)
 	log.debug("ASIC Value: #{asic}")
