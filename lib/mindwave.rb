@@ -28,7 +28,6 @@ require 'logger'
 # This module provides access to the Mindwave-Headset
 module Mindwave
 
-##
 # The Mindwave::Headset-class gives access to the Mindwave-Headset.
 # It's written for the Mindwave-Headset only, but most of the code
 # should work for Mindwave-Mobile too.
@@ -79,12 +78,6 @@ EXCODE = 0x55
 POOR_SIGNAL = 0x02 
 HEART_RATE = 0x03
 # Attention
-# = eSense Values(Attention and Meditation)
-#  * 1-20 = strongly lowered
-#  * 20-40 = reduced
-#  * 40-60 = neutral
-#  * 60-80 = slightly elevated
-#  * 80-100 = elevated
 ATTENTION = 0x04
 # Meditation
 MEDITATION = 0x05
@@ -106,14 +99,13 @@ RRINTERVAL = 0x86
 attr_accessor :headsetid, :device, :rate, :log, :mobile
 attr_reader :attention, :meditation, :asic,:poor, :headsetstatus, :heart, :runner
 
-##
 # If connectserial is true, then this constructor opens a serial connection 
 # and automatically connects to the headset
-# * *Args* :
-#   - headsetid (sticker in the battery-case)
-#   - device  (tty-device)
-#   - rate
-#   - log (logger-instance)
+#
+# @param [Integer] headsetid it's on the sticker in the battery-case
+# @param [String] device tty-device
+# @param [Integer] rate baud-rate
+# @param [Logger] log (logger-instance)
 def initialize(headsetid=nil,device='/dev/ttyUSB0', connectserial=true,rate=115200, log=Logger.new(STDOUT))
         @headsetid=headsetid
         @device=device
@@ -130,9 +122,9 @@ def initialize(headsetid=nil,device='/dev/ttyUSB0', connectserial=true,rate=1152
 end
 
 # connects the Mindwave-headset(not needed with Mindwave-Mobile)
-# * *Args* :
-#   - headsetid
 # (Mindwave only)
+#
+# @param [Integer] headsetid it's on the sticker in the battery-case
 # TODO: implement connection with headsetid
 def connect(headsetid=nil)
         if not headsetid.nil?
@@ -216,7 +208,7 @@ def run
 end
 
 # this method parses the payload of a data-row, parses the values and invokes the callback methods
-# * *Args* : (array) payload
+# @param [Array] payload Array with the payload
 def parse_payload(payload)
 	if not payload.instance_of?Array or payload.nil? or payload.length < 2
 		raise "Invalid Argument"
@@ -356,8 +348,9 @@ def parse_payload(payload)
 end
 
 # this method sends a byte to the serial connection
-# * *Args* : (Integer) hexbyte
 # (Mindwave only)
+#
+# @param [Integer] hexbyte byte to send
 def sendbyte(hexbyte)
 	cmd = BinData::Uint8be.new(hexbyte)
 	cmd.write(@conn)
@@ -405,8 +398,7 @@ end
 # this method is called when the poor-value is parsed
 # override this method to implement your own clode
 #
-# == Parameters: 
-#   - +poor+ poor-value
+# @param [Integer] poor poor-value
 def poorCall(poor)
 	if poor == 200 
 		log.info("No skin-contact detected")
@@ -416,8 +408,7 @@ end
 # this method is called when the attention-value is parsed
 # override this method to implement your own code
 #
-# == Parameters: 
-#   - +attention+ attention-value
+# @param [Integer] attention attention-value
 def attentionCall(attention)
 	str = eSenseStr(attention)
 	log.info("ATTENTION #{attention} #{str}")
@@ -426,8 +417,7 @@ end
 # this method is called when the meditation-value is parsed
 # override this method to implement your own code
 #
-# == Parameters: 
-#   - +meditation+ meditation-value
+# @param [Integer] meditation meditation-value
 def meditationCall(meditation)
 	str = eSenseStr(meditation)
 	log.info("MEDITATION #{meditation} #{str}")
@@ -436,8 +426,7 @@ end
 # this method is called when the heart-rate-value is parsed
 # override this method to implement your own code
 #
-# == Parameters: 
-#   - +heart+ heart-value
+# @param [Integer] heart heart-value
 def heartCall(heart)
 	log.info("HEART RATE #{heart}")
 end
@@ -445,8 +434,7 @@ end
 # this method is called when the raw-wave-value is parsed
 # override this method to implement your own code
 #
-# == Parameters: 
-#   - +rawvalue+ raw-wave-value
+# @param [Integer] rawvalue raw-wave-value
 def rawCall(rawvalue)
 	log.debug("Converted Raw-Value: #{rawvalue}")
 end
@@ -455,8 +443,7 @@ end
 # this method is called when the asic-value is parsed
 # override this method to implement your own code
 #
-# == Parameters: 
-#   - asic:: asic-value
+# @param [Integer] asic asic-value
 #
 def asicCall(asic)
 	log.debug("ASIC Value: #{asic}")
@@ -481,8 +468,14 @@ end
 # this method converts the numeric eSense-value of attention or meditation
 # to a string
 # 
-# * *Args* : (numeric) value
-# * *Returns* : string value
+# @param [Integer] value eSense-value
+# @returns [String] string-value
+# = eSense Values(Attention and Meditation)
+#  * 1-20 = strongly lowered
+#  * 20-40 = reduced
+#  * 40-60 = neutral
+#  * 60-80 = slightly elevated
+#  * 80-100 = elevated
 def eSenseStr(value)
 	result = case value
 		when 0..20   then "Strongly lowered"
@@ -499,11 +492,10 @@ end
 
 # converts a raw-wave-data-packet of 2 bytes to a single value
 #
-# * *Args* : 
-#   - +rawval1+ (numeric) first byte-packet of the raw-wave-code
-#   - +rawval2+ (numeric) second byte-packet of the raw-wave-code
+# @param [Integer] rawval1 first byte-packet of the raw-wave-code
+# @param [Integer] rawval2 second byte-packet of the raw-wave-code
 #
-# * *Returns* : (numeric) single value generated from the 2 bytes
+# @return [Integer] single value generated from the 2 bytes
 def convertRaw(rawval1,rawval2)
 	raw = rawval1*256 + rawval2
         if raw >= 32768
