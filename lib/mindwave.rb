@@ -405,7 +405,7 @@ end
 # this method is called when the poor-value is parsed
 # override this method to implement your own clode
 #
-# * *Args* : 
+# == Parameters: 
 #   - +poor+ poor-value
 def poorCall(poor)
 	if poor == 200 
@@ -416,7 +416,7 @@ end
 # this method is called when the attention-value is parsed
 # override this method to implement your own code
 #
-# * *Args* : 
+# == Parameters: 
 #   - +attention+ attention-value
 def attentionCall(attention)
 	str = eSenseStr(attention)
@@ -426,7 +426,7 @@ end
 # this method is called when the meditation-value is parsed
 # override this method to implement your own code
 #
-# * *Args* : 
+# == Parameters: 
 #   - +meditation+ meditation-value
 def meditationCall(meditation)
 	str = eSenseStr(meditation)
@@ -436,7 +436,7 @@ end
 # this method is called when the heart-rate-value is parsed
 # override this method to implement your own code
 #
-# * *Args* : 
+# == Parameters: 
 #   - +heart+ heart-value
 def heartCall(heart)
 	log.info("HEART RATE #{heart}")
@@ -445,7 +445,7 @@ end
 # this method is called when the raw-wave-value is parsed
 # override this method to implement your own code
 #
-# * *Args* : 
+# == Parameters: 
 #   - +rawvalue+ raw-wave-value
 def rawCall(rawvalue)
 	log.debug("Converted Raw-Value: #{rawvalue}")
