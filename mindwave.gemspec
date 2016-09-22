@@ -12,7 +12,7 @@ Gem::Specification.new do |spec|
   spec.summary       = "mindwave is a ruby-implementation for Neurosky's Mindwave Headset"
   spec.description   = "This project communicates with the Mindwave Headset. "
   spec.homepage      = "https://tech.feedyourhead.at"
-  s.licenses 	     = ["GPL"]
+  spec.licenses      = ["GPL"]
 
   spec.files         = `git ls-files -z`.split("\x0").reject { |f| f.match(%r{^(test|spec|features)/}) }
   spec.bindir        = "exe"
