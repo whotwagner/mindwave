@@ -12,21 +12,25 @@ Even if this library is written for the Mindwave-Headset most of the code should
 
 ## Installation
 
-### Using gem install
+### Install from rubygems.org
+```
+gem install mindwave
+```
 
-```
-git clone https://github.com/whotwagner/mindwave
-cd mindwave
-rake build
-gem install pkg/mindwave-0.1.2.gem
-```
 ### Using bundler
 
 ```
 gem 'mindwave', :git => "https://github.com/whotwagner/mindwave.git",
 ```
 
-TODO: Upload this Gem to rubygems
+### Manual installation
+
+```
+git clone https://github.com/whotwagner/mindwave
+cd mindwave
+rake build
+gem install pkg/mindwave-<VERSION>.gem
+```
 
 ## Usage
 
@@ -87,6 +91,10 @@ thread.join
 
 mw.close
 ```
+
+## Documentation
+
+[rubydoc.info](http://www.rubydoc.info/github/whotwagner/mindwave/master)
 
 ## Resources
 
