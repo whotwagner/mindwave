@@ -4,6 +4,7 @@
 [![Build Status](https://travis-ci.org/whotwagner/mindwave.svg?branch=master)](https://travis-ci.org/whotwagner/mindwave)
 [![Inline docs](http://inch-ci.org/github/whotwagner/mindwave.svg?branch=master)](http://inch-ci.org/github/whotwagner/mindwave)
 [![Code Climate](https://codeclimate.com/github/whotwagner/mindwave/badges/gpa.svg)](https://codeclimate.com/github/whotwagner/mindwave)
+[![Gem Version](https://badge.fury.io/rb/mindwave.svg)](https://badge.fury.io/rb/mindwave)
 
 
 This gem is a library for the Neurosky Mindwave headset. It reads out EEG-data from the ThinkGear Serial Stream and provides callback-methods for processing the data.
