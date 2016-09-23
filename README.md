@@ -13,6 +13,7 @@ Even if this library is written for the Mindwave-Headset most of the code should
 ## Installation
 
 ### Install from rubygems.org
+
 ```
 gem install mindwave
 ```
