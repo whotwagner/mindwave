@@ -378,6 +378,10 @@ end
 
 # this method parses the raw ASIC values and returns the values of each
 # of the wave types
+#
+# @param [Integer] asic value 
+#
+# @returns [Array<Integer>] Array of: delta,theta,lowAlpha,highAlpha,lowBeta,highBeta,lowGamma,midGamma
 def parseASIC(asic)
     # assign #{asic} to the array 'a'
     a = "#{asic}"
