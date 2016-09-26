@@ -10,8 +10,8 @@ Gem::Specification.new do |spec|
   spec.email         = ["code@feedyourhead.at"]
 
   spec.summary       = "mindwave is a ruby-implementation for Neurosky's Mindwave Headset"
-  spec.description   = "This project communicates with the Mindwave Headset. "
-  spec.homepage      = "https://tech.feedyourhead.at"
+  spec.description   = " This gem is a library for Neurosky Mindwave headsets. It reads out EEG-data from the ThinkGear Serial Stream and provides callback-methods for processing the data. this library works for Mindwave and Mindwave-Mobile."
+  spec.homepage      = "https://github.com/whotwagner/mindwave"
   spec.licenses      = ["GPL"]
 
   spec.files         = `git ls-files -z`.split("\x0").reject { |f| f.match(%r{^(test|spec|features)/}) }
