@@ -376,6 +376,33 @@ def parse_payload(payload)
 
 end
 
+# this method parses the raw ASIC values and returns the values of each
+# of the wave types
+def parseASIC(asic)
+    # assign #{asic} to the array 'a'
+    a = "#{asic}"
+    # strip off square brackets
+    a = a.delete! '[]'
+    # convert to array of integers
+    a = a.split(",").map(&:to_i)
+
+    # define wave values
+    delta     = convertToBigEndianInteger(a[0..3])
+    theta     = convertToBigEndianInteger(a[3..6])
+    lowAlpha  = convertToBigEndianInteger(a[6..9])
+    highAlpha = convertToBigEndianInteger(a[9..12])
+    lowBeta   = convertToBigEndianInteger(a[12..15])
+    highBeta  = convertToBigEndianInteger(a[15..18])
+    lowGamma  = convertToBigEndianInteger(a[18..21])
+    midGamma  = convertToBigEndianInteger(a[21..24])
+
+    # stuff wave values in array
+    asicArray = [delta,theta,lowAlpha,highAlpha,lowBeta,highBeta,lowGamma,midGamma]
+    
+    # return array of wave values
+    return asicArray
+end
+
 # this method sends a byte to the serial connection
 # (Mindwave only)
 #
@@ -533,6 +560,24 @@ def convertRaw(rawval1,rawval2)
 
 	return raw
 end
+
+# converts a raw ASIC power packet of three bytes to a single value
+#
+# @param [Integer] threeBytes[0] first byte-packet of the ASIC wave code
+# @param [Integer] threeBytes[1] second byte-packet of the ASIC wave code
+# @param [Integer] threeBytes[2] third byte-packet of the ASIC wave code
+#
+# @return [Integer] single value generated from the 3 bytes
+def convertToBigEndianInteger(threeBytes)
+  # see MindwaveDataPoints.py at
+  # https://github.com/robintibor/python-mindwave-mobile
+  #
+  bigEndianInteger = (threeBytes[0] << 16) |\
+   (((1 << 16) - 1) & (threeBytes[1] << 8)) |\
+    ((1 << 8) -1) & threeBytes[2]
+  return bigEndianInteger
+end
+
 
 end
 end

@@ -6,42 +6,21 @@ require 'mindwave'
 class EEG < Mindwave::Headset
   # override Attention-Callback-Method
   def asicCall(asic)
+
     puts "DEBUG: ASIC array: #{asic}\n"
-    # assign #{asic} to the array 'a'
-    a = "#{asic}"
-    # strip off square brackets
-    a = a.delete! '[]'
-    # convert to array of integers
-    a = a.split(",").map(&:to_i)
 
-    # define wave values
-    delta     = convertToBigEndianInteger(a[0..3])
-    theta     = convertToBigEndianInteger(a[3..6])
-    lowAlpha  = convertToBigEndianInteger(a[6..9])
-    highAlpha = convertToBigEndianInteger(a[9..12])
-    lowBeta   = convertToBigEndianInteger(a[12..15])
-    highBeta  = convertToBigEndianInteger(a[15..18])
-    lowGamma  = convertToBigEndianInteger(a[18..21])
-    midGamma  = convertToBigEndianInteger(a[21..24])
+    # pass asic to parseASIC and store result
+    parsed = parseASIC(asic)
 
-    puts "delta:     #{delta}"
-    puts "theta:     #{theta}"
-    puts "lowAlpha:  #{lowAlpha}"
-    puts "highAlpha: #{highAlpha}"
-    puts "lowBeta:   #{lowBeta}"
-    puts "highBeta:  #{highBeta}"
-    puts "lowGamma:  #{lowGamma}"
-    puts "midGamma:  #{midGamma}"
-  end
-
-  def convertToBigEndianInteger(threeBytes)
-    # see MindwaveDataPoints.py at
-    # https://github.com/robintibor/python-mindwave-mobile
-    #
-    bigEndianInteger = (threeBytes[0] << 16) |\
-     (((1 << 16) - 1) & (threeBytes[1] << 8)) |\
-      ((1 << 8) -1) & threeBytes[2]
-    return bigEndianInteger
+    # print the values of the waves to STDOUT
+    puts "delta:     #{parsed[0]}"
+    puts "theta:     #{parsed[1]}"
+    puts "lowAlpha:  #{parsed[2]}"
+    puts "highAlpha: #{parsed[3]}"
+    puts "lowBeta:   #{parsed[4]}"
+    puts "highBeta:  #{parsed[5]}"
+    puts "lowGamma:  #{parsed[6]}"
+    puts "midGamma:  #{parsed[7]}"
   end
 
 end
