@@ -126,7 +126,7 @@ attr_accessor :headsetid, :device, :rate, :log
 #   stores the current heart-value
 # @!attribute [r] runner
 #   @see #stop
-attr_reader :attention, :meditation, :asic,:poor, :headsetstatus, :heart, :runner
+attr_reader :attention, :meditation, :asic, :poor, :headsetstatus, :heart, :runner
 
 # If connectserial is true, then this constructor opens a serial connection 
 # and automatically connects to the headset
