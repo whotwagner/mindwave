@@ -114,6 +114,7 @@ describe Mindwave do
 #	payload[29] = 0x25
 #	payload[30] = 0x05
 #	payload[31] = 0x0a
+#	
 #	mw.parse_payload(payload)
 #  end
 end
