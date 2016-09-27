@@ -557,6 +557,7 @@ end
 #
 # @return [Integer] single value generated from the 2 bytes
 def convertRaw(rawval1,rawval2)
+
 	raw = rawval1*256 + rawval2
         if raw >= 32768
                 raw = raw - 65536
