@@ -7,6 +7,17 @@ describe Mindwave do
     expect(Mindwave::VERSION).not_to be nil
   end
 
+  it 'converts raw waves' do
+    raw = mw.instance_eval{convertRaw(0xaa,0xbb)}
+    expect(raw).to eq(-21829)
+  end
+
+  it 'converts ASIC wave values' do
+    a = [0xaa,0xbb,0xcc]
+    asic = mw.instance_eval{convertToBigEndianInteger(a)}
+    expect(asic).to eq(11189196)
+  end
+
 # it 'connects and disconnects' do
 #      mw.serial_open
 #      sleep(2)
